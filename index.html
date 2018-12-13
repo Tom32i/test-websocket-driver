@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript">
+        const sampleData = new Uint8Array([ 255 ]);
+        const arrayBuffer = sampleData.buffer;
+        const socket = new WebSocket('ws:localhost:8080', 'websocket');
+
+        socket.binaryType = 'arraybuffer';
+
+        socket.addEventListener('close', () => console.log('closed'));
+        socket.addEventListener('error', error => console.error(error));
+        socket.addEventListener('message', event => {
+            console.log('-'.repeat(10));
+            console.log('Received ArrayBuffer:', event.data, event.data.byteLength);
+            console.log('Received TypedArray:', new Uint8Array(event.data));
+        });
+        socket.addEventListener('open', () => {
+            console.log('-'.repeat(10));
+            console.log('Sending TypedArray:', sampleData);
+            console.log('Sending ArrayBuffer:', arrayBuffer, arrayBuffer.byteLength);
+            socket.send(sampleData.buffer);
+        });
+    </script>
+</body>
+</html>
