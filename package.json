@@ -9,6 +9,6 @@
   "author": "Thomas Jarrand <thomas.jarrand@gmail.com> (https://thomas.jarrand.fr)",
   "license": "MIT",
   "dependencies": {
-    "websocket-driver": "lpinca/websocket-driver-node#1682df15bf4118511c5a1047e9871ee01ddec938"
+    "websocket-driver": "^0.7.0"
   }
 }
